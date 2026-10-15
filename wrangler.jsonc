@@ -1,0 +1,10 @@
+{
+  "$schema": "https://developers.cloudflare.com/wrangler/config-schema.json",
+  "name": "ember-space",
+  "compatibility_date": "2026-10-15",
+  "assets": {
+    "directory": "./.output/public",
+    "not_found_handling": "404-page",
+    "html_handling": "auto-trailing-slash"
+  }
+}

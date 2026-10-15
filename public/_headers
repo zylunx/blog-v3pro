@@ -1,0 +1,11 @@
+# 预渲染的接口响应没有扩展名，Workers 会按 octet-stream 返回，需手动指定 MIME
+/api/stats
+  Content-Type: application/json
+
+# .opml 不在默认 MIME 表里，同样补齐
+/subscriptions.opml
+  Content-Type: application/xml
+
+# 文件名带 hash 的构建产物可以长期缓存
+/_nuxt/*
+  Cache-Control: public, max-age=31536000, immutable
