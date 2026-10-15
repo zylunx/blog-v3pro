@@ -20,7 +20,7 @@ const basicConfig = {
 	language: 'zh-CN',
 	timeEstablished: '2026-10-13',
 	timeZone: 'Asia/Shanghai',
-	url: 'http://blog.tuuki.top',
+	url: 'https://blog.tuuki.top',
 	defaultCategory: '未分类',
 }
 
@@ -87,7 +87,7 @@ const blogConfig = {
 	/** 自己部署的 Twikoo 服务 */
 	twikoo: {
 		envId: 'https://twikoo.laplace.de5.net/',
-		preload: true,
+		preload: 'https://twikoo.laplace.de5.net/',
 	},
 }
 
