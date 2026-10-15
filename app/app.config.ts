@@ -45,7 +45,7 @@ export default defineAppConfig({
 
 		stats: {
 			/** 归档页面每年标题对应的年龄，设为 0 则隐藏年龄 */
-			birthYear: 0,
+			birthYear: 1,
 			/** blog-stats widget 的预置文本，留空则由接口实时统计 */
 			wordCount: '',
 		},

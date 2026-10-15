@@ -1,19 +1,19 @@
 import type { FeedGroup } from './types/feed'
 
 export default [{
-	name: '清晰体验',
-	desc: '使用 Clarity 博客主题构建的网站。',
+	name: '不止现在',
+	desc: '使用 zhilu 博客主题构建的网站。',
 	entries: [{
-		author: '纸鹿本鹿',
-		sitenick: '摸鱼处',
-		title: '纸鹿摸鱼处',
-		desc: '纸鹿至麓不知路，支炉制露不止漉',
-		link: 'https://blog.zhilu.site/',
-		feed: 'https://blog.zhilu.site/atom.xml',
-		icon: 'https://www.zhilu.site/api/icon.png',
-		avatar: 'https://www.zhilu.site/api/avatar.png',
-		archs: ['Nuxt', 'Vercel'],
-		date: '2019-07-19',
-		comment: 'Clarity 主题作者',
+		author: '月月',
+		sitenick: 'Space',
+		title: 'EmberSpace',
+		desc: '人间烟火散尽，唯留心底余烬',
+		link: 'https://blog.tuuki.top/',
+		feed: 'https://blog.tuuki.top/atom.xml',
+		icon: 'https://www.zhilu.site/logo.png',
+		avatar: 'https://www.zhilu.site/logo.png',
+		archs: ['Nuxt', 'CF'],
+		date: '2019-01-01',
+		comment: '旅客',
 	}],
 }] satisfies FeedGroup[]

@@ -7,7 +7,7 @@ const basicConfig = {
 	description: '分享学习笔记、技术实践与日常生活。',
 	author: {
 		name: '月月',
-		avatar: 'https://weavatar.com/avatar/?d=initials&name=博主',
+		avatar: '/logo.png',
 		email: 'zylunx@linux.do',
 		homepage: '/',
 	},
@@ -16,7 +16,7 @@ const basicConfig = {
 		name: '署名-非商业性使用-相同方式共享 4.0 国际',
 		url: 'https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans',
 	},
-	favicon: '/logo.svg',
+	favicon: '/logo.png',
 	language: 'zh-CN',
 	timeEstablished: '2026-10-13',
 	timeZone: 'Asia/Shanghai',
@@ -87,7 +87,7 @@ const blogConfig = {
 	/** 自己部署的 Twikoo 服务 */
 	twikoo: {
 		envId: 'https://twikoo.laplace.de5.net/',
-		preload: false,
+		preload: true,
 	},
 }
 
