@@ -2,6 +2,52 @@
 import type { TippyComponent } from 'vue-tippy'
 
 const appConfig = useAppConfig()
+const route = useRoute()
+
+/** 未配置 twikoo.cdn 时使用的前端脚本地址 */
+const TWIKOO_SCRIPT_FALLBACK = ['https://s4.zstatic.net/npm/twikoo@1.6.45/dist/twikoo.min.js']
+
+const loadState = ref<'loading' | 'loaded' | 'error'>('loading')
+
+let twikooScriptPromise: Promise<void> | undefined
+
+function loadScript(src: string) {
+	return new Promise<void>((resolve, reject) => {
+		const script = document.createElement('script')
+		script.src = src
+		script.async = true
+		script.onload = () => resolve()
+		script.onerror = () => reject(new Error(`加载 ${src} 失败`))
+		document.head.append(script)
+	})
+}
+
+/** 加载 Twikoo 前端脚本，成功后 window.twikoo 才可用 */
+function loadTwikooScript() {
+	if (window.twikoo)
+		return Promise.resolve()
+
+	twikooScriptPromise ??= (async () => {
+		const sources = appConfig.twikoo?.cdn?.length ? appConfig.twikoo.cdn : TWIKOO_SCRIPT_FALLBACK
+		let lastError: unknown
+
+		for (const src of sources) {
+			try {
+				await loadScript(src)
+				if (window.twikoo)
+					return
+				lastError = new Error(`Twikoo 脚本未注册全局变量：${src}`)
+			}
+			catch (error) {
+				lastError = error
+			}
+		}
+
+		throw lastError ?? new Error('未配置 Twikoo 脚本地址')
+	})()
+
+	return twikooScriptPromise
+}
 
 const commentEl = useTemplateRef('comment')
 const popoverEl = useTemplateRef<TippyComponent>('popover')
@@ -51,12 +97,36 @@ function confirmOpen() {
 	window.open(popoverInputEl.value?.textContent, '_blank')
 }
 
-onMounted(() => {
-	window.twikoo?.init?.({
-		envId: appConfig.twikoo?.envId,
-		// twikoo 会把挂载后的元素变为 #twikoo
-		el: '#twikoo',
-	})
+onMounted(async () => {
+	const envId = appConfig.twikoo?.envId
+	if (!envId) {
+		loadState.value = 'error'
+		return
+	}
+
+	try {
+		await loadTwikooScript()
+	}
+	catch (error) {
+		console.error('[twikoo] 脚本加载失败', error)
+		loadState.value = 'error'
+		return
+	}
+
+	try {
+		window.twikoo?.init?.({
+			envId,
+			// twikoo 会把挂载后的元素变为 #twikoo
+			el: '#twikoo',
+			path: route.path,
+			lang: appConfig.language,
+		})
+		loadState.value = 'loaded'
+	}
+	catch (error) {
+		console.error('[twikoo] 初始化失败', error)
+		loadState.value = 'error'
+	}
 })
 </script>
 
@@ -104,9 +174,15 @@ onMounted(() => {
 		</template>
 	</Tooltip>
 
-	<div id="twikoo">
-		<p>评论加载中...</p>
-	</div>
+	<!-- twikoo 会接管此元素内容，状态提示需放在其外部避免被覆盖 -->
+	<div id="twikoo" />
+
+	<p v-if="loadState === 'loading'" class="z-comment-status">
+		评论加载中...
+	</p>
+	<p v-else-if="loadState === 'error'" class="z-comment-status">
+		评论加载失败，请检查 Twikoo 服务地址（envId）与脚本地址（cdn）后刷新页面。
+	</p>
 </section>
 </template>
 
@@ -118,6 +194,11 @@ onMounted(() => {
 		margin-top: 3rem;
 		font-size: 1.25rem;
 	}
+}
+
+.z-comment-status {
+	margin: 2em 0;
+	color: var(--c-text-3);
 }
 
 :deep() > [data-tippy-root] > .tippy-box {

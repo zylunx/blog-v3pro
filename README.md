@@ -155,7 +155,7 @@ pnpm init-project # 初始化项目配置，输入 confirm 确认
 初始化后头像和图标使用 WeAvatar 首字占位头像（无需邮箱或 MD5），站点地址为 `http://localhost:3000/`。上线前请按终端清单修改：
 
 - 站点与个人配置：
-  - `blog.config.ts` 中的站点信息、Umami 站点统计、Cloudflare Insights 统计、Twikoo 评论服务源。
+  - `blog.config.ts` 中的站点信息、Umami 站点统计、Cloudflare Insights 统计、Twikoo 评论服务源（`twikoo.envId` 为评论接口地址，`twikoo.cdn` 为前端脚本地址，按顺序尝试，可换成自己的 CDN）。
   - `app/app.config.ts` 中的页脚导航、出生年份等（`birthYear: 0` 隐藏年龄）。
   - `content/link.md` 中的友链申请方式、`app/feeds.ts` 中的友链列表。
 
