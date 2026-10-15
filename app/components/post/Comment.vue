@@ -22,9 +22,17 @@ function loadScript(src: string) {
 	})
 }
 
-/** 加载 Twikoo 前端脚本，成功后 window.twikoo 才可用 */
+/**
+ * 页面上的 <div id="twikoo"> 会被浏览器同时暴露为 window.twikoo（DOM 命名访问），
+ * 因此只能用 init 方法是否存在判断脚本已加载，不能只判断 window.twikoo
+ */
+function isTwikooLoaded() {
+	return typeof window.twikoo?.init === 'function'
+}
+
+/** 加载 Twikoo 前端脚本，成功后 window.twikoo.init 才可用 */
 function loadTwikooScript() {
-	if (window.twikoo)
+	if (isTwikooLoaded())
 		return Promise.resolve()
 
 	twikooScriptPromise ??= (async () => {
@@ -34,9 +42,9 @@ function loadTwikooScript() {
 		for (const src of sources) {
 			try {
 				await loadScript(src)
-				if (window.twikoo)
+				if (isTwikooLoaded())
 					return
-				lastError = new Error(`Twikoo 脚本未注册全局变量：${src}`)
+				lastError = new Error(`Twikoo 脚本未注册 init 方法：${src}`)
 			}
 			catch (error) {
 				lastError = error
@@ -114,7 +122,11 @@ onMounted(async () => {
 	}
 
 	try {
-		window.twikoo?.init?.({
+		const twikoo = window.twikoo
+		if (typeof twikoo?.init !== 'function')
+			throw new Error('Twikoo 脚本已加载但未注册 init 方法')
+
+		twikoo.init({
 			envId,
 			// twikoo 会把挂载后的元素变为 #twikoo
 			el: '#twikoo',
