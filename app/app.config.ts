@@ -44,9 +44,9 @@ export default defineAppConfig({
 		},
 
 		stats: {
-			/** 归档页面每年标题对应的年龄 */
+			/** 归档页面每年标题对应的年龄，设为 0 则隐藏年龄 */
 			birthYear: 0,
-			/** blog-stats widget 的预置文本 */
+			/** blog-stats widget 的预置文本，留空则由接口实时统计 */
 			wordCount: '',
 		},
 	},
@@ -83,7 +83,7 @@ export default defineAppConfig({
 			{
 				title: '信息',
 				items: [
-					{ icon: 'simple-icons:nuxt', text: `主题: ${pascalCase(name)} ${version}`, url: 'https://github.com/L33Z22L11/blog-v3' },
+					{ icon: 'simple-icons:nuxt', text: `主题: ${pascalCase(name)} ${version}`, url: 'https://github.com/zylunx/blog-v3pro' },
 					{ icon: 'tabler:color-swatch', text: '主题和组件文档', url: 'https://blog.zhilu.site/theme' },
 					{ icon: 'tabler:certificate', text: '萌20230413号', url: 'https://icp.gov.moe/?keyword=20230413' },
 				],

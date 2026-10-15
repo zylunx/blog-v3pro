@@ -16,7 +16,7 @@ const basicConfig = {
 		name: '署名-非商业性使用-相同方式共享 4.0 国际',
 		url: 'https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans',
 	},
-	favicon: '\app\assets\icons\logo.svg"',
+	favicon: '/logo.svg',
 	language: 'zh-CN',
 	timeEstablished: '2026-10-13',
 	timeZone: 'Asia/Shanghai',
@@ -87,7 +87,7 @@ const blogConfig = {
 	/** 自己部署的 Twikoo 服务 */
 	twikoo: {
 		envId: 'https://twikoo.laplace.de5.net/',
-		preload: 'false',
+		preload: false,
 	},
 }
 
