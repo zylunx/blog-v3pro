@@ -4,8 +4,8 @@ import type { TippyComponent } from 'vue-tippy'
 const appConfig = useAppConfig()
 const route = useRoute()
 
-/** 未配置 twikoo.cdn 时使用的前端脚本地址 */
-const TWIKOO_SCRIPT_FALLBACK = ['https://s4.zstatic.net/npm/twikoo@1.6.45/dist/twikoo.min.js']
+/** 未配置 twikoo.cdn 时使用的前端脚本地址，版本需与云函数保持一致 */
+const TWIKOO_SCRIPT_FALLBACK = ['https://s4.zstatic.net/npm/twikoo@1.7.14/dist/twikoo.min.js']
 
 const loadState = ref<'loading' | 'loaded' | 'error'>('loading')
 

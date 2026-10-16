@@ -90,10 +90,10 @@ const blogConfig = {
 		preload: 'https://twikoo.laplace.de5.net/',
 		/** Twikoo 前端脚本地址，按顺序尝试，首个可用的生效 */
 		cdn: [
-			// 国内镜像，与主题自带样式匹配的 1.6.x 版本
-			'https://s4.zstatic.net/npm/twikoo@1.6.45/dist/twikoo.min.js',
+			// 国内镜像，版本需与云函数保持一致（当前 1.7.14）
+			'https://s4.zstatic.net/npm/twikoo@1.7.14/dist/twikoo.min.js',
 			// 备用源
-			'https://unpkg.com/twikoo@1.6.45/dist/twikoo.min.js',
+			'https://unpkg.com/twikoo@1.7.14/dist/twikoo.min.js',
 		],
 	},
 }
