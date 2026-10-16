@@ -13,13 +13,14 @@ EdgeEver 的图片默认存放在笔记自身的服务器上。时间一长，�
 
 它的定位很清晰：**图片已经成为笔记附件之后**，负责把它搬到图床并改好引用，而不是去篡改 EdgeEver 本身的上传流程。哪些能做到、哪些做不到，下文如实说明。
 
-::link-card
+:::link-card
 ---
 icon: https://github.com/favicon.ico
 title: zylunx/edgeever-imgbed-plugin
 description: 插件仓库，根目录即最新构建产物
 link: https://github.com/zylunx/edgeever-imgbed-plugin
 ---
+:::
 
 ## 功能特性
 
