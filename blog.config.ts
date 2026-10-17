@@ -1,13 +1,13 @@
 import type { FeedEntry } from './app/types/feed'
 
 const basicConfig = {
-	title: 'EmberSpace',
-	subtitle: '记录技术与生活',
+	title: 'Ember',
+	subtitle: '人间烟火散尽，唯留心底余烬',
 	// 长 description 利好于 SEO
 	description: '分享学习笔记、技术实践与日常生活。',
 	author: {
 		name: '月月',
-		avatar: '/logo.png',
+		avatar: 'https://blog.tuuki.top/logo.png',
 		email: 'zylunx@linux.do',
 		homepage: '/',
 	},
