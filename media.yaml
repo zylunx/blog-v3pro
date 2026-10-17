@@ -1,0 +1,96 @@
+# 个人媒体库数据
+# 由 scripts/sync-media.ts 生成，也可手工维护；type / status 需命中 app.config.ts 中 media 注册表
+# 以下为示例数据：封面为占位图，链接供演示，请替换为自己的收藏记录
+
+- title: 葬送的芙莉莲
+  original: 葬送のフリーレン
+  type: anime
+  status: done
+  cover: https://picsum.photos/seed/frieren/300/400
+  year: 2023
+  score: 9.4
+  siteScore: 8.7
+  progress: 28/28
+  link: https://bgm.tv/subject/420442
+  comment: 寿命论之下，旅程本身就是意义
+  date: 2026-03-01
+
+- title: 奥本海默
+  original: Oppenheimer
+  type: movie
+  status: done
+  cover: https://picsum.photos/seed/oppenheimer/300/400
+  year: 2023
+  score: 9.2
+  siteScore: 8.6
+  link: https://www.themoviedb.org/movie/872585
+  comment: 黑白交织的造物与赎罪
+  date: 2026-02-10
+
+- title: 蜘蛛侠：纵横宇宙
+  original: 'Spider-Man: Across the Spider-Verse'
+  type: movie
+  status: done
+  cover: https://picsum.photos/seed/spiderverse/300/400
+  year: 2023
+  score: 9.0
+  siteScore: 8.5
+  link: https://www.themoviedb.org/movie/569094
+  date: 2026-01-20
+
+- title: 闪电侠
+  original: The Flash
+  type: movie
+  status: wish
+  cover: https://picsum.photos/seed/theflash/300/400
+  year: 2023
+  siteScore: 6.8
+  link: https://www.themoviedb.org/movie/298618
+  date: 2026-01-05
+
+- title: 克拉克森的农场
+  original: Clarkson's Farm
+  type: tv
+  status: doing
+  cover: https://picsum.photos/seed/clarkson/300/400
+  year: 2021
+  score: 8.8
+  siteScore: 8.9
+  progress: 3/8
+  link: https://www.themoviedb.org/tv/103504
+  comment: 暴躁老头的种田日记
+  date: 2026-03-12
+
+- title: 三体
+  original: Three-Body
+  type: tv
+  status: done
+  cover: https://picsum.photos/seed/threebody/300/400
+  year: 2023
+  score: 8.5
+  siteScore: 8.7
+  progress: 30/30
+  link: https://www.themoviedb.org/tv/210220
+  date: 2026-01-02
+
+- title: 诡秘之主
+  original: Lord of the Mysteries
+  type: novel
+  status: doing
+  cover: https://picsum.photos/seed/lom/300/400
+  year: 2020
+  score: 9.5
+  progress: 1240章
+  link: https://www.qidian.com/book/1010868264/
+  comment: 蒸汽与机械时代的诗歌
+  date: 2026-03-15
+
+- title: 道诡异仙
+  type: novel
+  status: doing
+  cover: https://picsum.photos/seed/dgyx/300/400
+  year: 2023
+  score: 9.2
+  progress: 1122章
+  link: https://www.qidian.com/book/1033404431/
+  date: 2026-03-18

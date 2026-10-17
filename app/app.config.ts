@@ -1,7 +1,9 @@
+import type { MediaConfig } from '~/types/media'
 import type { Nav, NavItem } from '~/types/nav'
 import { pascalCase } from 'es-toolkit/string'
 import { Temporal } from 'temporal-polyfill'
 import blogConfig from '~~/blog.config'
+import mediaSources from '~~/media.config'
 import { name, version } from '~~/package.json'
 
 // 图标查询：https://yesicon.app/tabler
@@ -58,8 +60,8 @@ export default defineAppConfig({
 		/** 侧边栏底部图标导航 */
 		iconNav: [
 			{ icon: 'tabler:home', text: '个人主页', url: blogConfig.author.homepage },
-			//{ icon: 'ri:qq-line', text: '交流群: 169994096', url: 'https://jq.qq.com/?_wv=1027&k=lQfNSeEd' },
-			//{ icon: 'tabler:brand-github', text: 'GitHub: L33Z22L11', url: 'https://github.com/L33Z22L11' },
+			// { icon: 'ri:qq-line', text: '交流群: 169994096', url: 'https://jq.qq.com/?_wv=1027&k=lQfNSeEd' },
+			// { icon: 'tabler:brand-github', text: 'GitHub: L33Z22L11', url: 'https://github.com/L33Z22L11' },
 			{ icon: 'tabler:rss', text: 'Atom订阅', url: '/atom.xml' },
 			{ icon: 'ri:subway-line', text: '开往 - 博客下一站', url: 'https://www.travellings.cn/go.html' },
 		] satisfies NavItem[],
@@ -75,8 +77,8 @@ export default defineAppConfig({
 			{
 				title: '社交',
 				items: [
-					//{ icon: 'tabler:brand-github', text: 'L33Z22L11', url: 'https://github.com/L33Z22L11' },
-					//{ icon: 'ri:qq-line', text: '群: 169994096', url: 'https://jq.qq.com/?_wv=1027&k=lQfNSeEd' },
+					// { icon: 'tabler:brand-github', text: 'L33Z22L11', url: 'https://github.com/L33Z22L11' },
+					// { icon: 'ri:qq-line', text: '群: 169994096', url: 'https://jq.qq.com/?_wv=1027&k=lQfNSeEd' },
 					{ icon: 'tabler:mail', text: blogConfig.author.email, url: `mailto:${blogConfig.author.email}` },
 				],
 			},
@@ -108,6 +110,35 @@ export default defineAppConfig({
 		randomInGroup: true,
 	},
 
+	/** 个人媒体库（左栏「娱乐」入口 → /media 页） */
+	media: {
+		enable: true,
+		/** 媒体类型注册表：key 对应 media.yaml 的 type 字段，新增类型只需加一行 */
+		types: {
+			anime: { name: '动漫', icon: 'tabler:device-tv', color: '#ff8c00' },
+			movie: { name: '电影', icon: 'tabler:movie', color: '#33aaff' },
+			tv: { name: '剧集', icon: 'tabler:monitor', color: '#33bbaa' },
+			novel: { name: '小说', icon: 'tabler:book', color: '#ff7777' },
+		},
+		/** 收藏分类注册表：key 对应 media.yaml 的 status 字段 */
+		categories: {
+			doing: { name: '在看', icon: 'tabler:player-play' },
+			done: { name: '看过', icon: 'tabler:circle-check' },
+			wish: { name: '想看', icon: 'tabler:clock' },
+		},
+		display: {
+			/** 默认显示方式：poster=海报墙 / list=列表，访客可经 ?mode= 切换 */
+			mode: 'poster' as 'poster' | 'list',
+			/** 每页展示条数 */
+			perPage: 24,
+			showCover: true,
+			showRating: true,
+			showProgress: true,
+		},
+		/** 同步脚本数据源（pnpm sync:media 使用，配置位于仓库根 media.config.ts） */
+		sources: mediaSources,
+	} satisfies MediaConfig,
+
 	/** 左侧栏导航 */
 	nav: [
 		{
@@ -116,6 +147,7 @@ export default defineAppConfig({
 				{ icon: 'tabler:files', text: '文章', url: '/' },
 				{ icon: 'tabler:link', text: '友链', url: '/link' },
 				{ icon: 'tabler:archive', text: '归档', url: '/archive' },
+				{ icon: 'tabler:devices', text: '娱乐', url: '/media' },
 			],
 		},
 	] satisfies Nav,
