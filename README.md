@@ -1,79 +1,55 @@
-# 纸鹿摸鱼处
+# Ember
 
 [![框架](https://img.shields.io/badge/框架-Nuxt-00DC82?logo=Nuxt.js)](https://nuxt.com/)
 [![CMS](https://img.shields.io/badge/CMS-Nuxt%20Content-00DC82?logo=Nuxt.js)](https://content.nuxt.com/)
-[![部署平台](https://img.shields.io/badge/部署平台-Vercel-000000?logo=Vercel)](https://vercel.com/)
+[![部署平台](https://img.shields.io/badge/部署平台-Cloudflare%20Pages-F38020?logo=Cloudflare)](https://pages.cloudflare.com/)
 [![访问统计](https://img.shields.io/badge/访问统计-Umami-000000?logo=Umami)](https://github.com/umami-software/umami)
 [![代码风格](https://img.shields.io/badge/代码风格-ESLint-4B32C3?logo=ESLint)](https://eslint.org/)
 
-我的第三代个人博客，于 2024 年 8 月 11 日上线。
+基于 [Clarity](https://github.com/zylunx/blog-v3pro) 主题二次开发的个人博客，于 2026 年 10 月 13 日上线，记录了学习笔记、技术实践与日常生活。主题原作者为 [纸鹿摸鱼处](https://blog.zhilu.site/)（L33Z22L11），本仓库为其 [Clarity 主题](https://blog.zhilu.site/theme) 的个人 Fork，版权归属请以上游为准。
 
 3.8.0 原生 CSS 迁移包含破坏性更改：不再默认提供 Sass 和 Stylelint。下游更新前请阅读 [迁移说明](MIGRATION.md)，保留 SCSS 定制的过渡方案也在其中。
-
-## 耻辱柱 / Hall of Shame
-
-> [!CAUTION]
-> - 部署前必须完成项目个性化配置与内容修改，不得将我的信息用于你的网站图标/名称，严禁将项目内我的文章以你的名义重新发布至公开环境。
-> - 部署前必须完成项目个性化配置与内容修改，不得将我的信息用于你的网站图标/名称，严禁将项目内我的文章以你的名义重新发布至公开环境。
-> - 部署前必须完成项目个性化配置与内容修改，不得将我的信息用于你的网站图标/名称，严禁将项目内我的文章以你的名义重新发布至公开环境。
-
-近期 Fork 项目后将我的文章部署在互联网且不遵守 CC 协议的行为增加，追查耗费了我巨大精力，因此我将直接将侵权网站列在此标题，希望能减少此类现象的发生。
-
-<!-- 1. 2025-12-05 [钟神秀](https://github.com/zsxcoder/Nuxt-blog-v3)：blog.zsxcoder.top《我们的设备被拿来做了什么：软件的背景行为》 -->
-<!-- 2. 2025-12-28 [Axel Beta](https://github.com/ErenAxel/blog-v3)：sc.axel.xin《我们的设备被拿来做了什么：软件的背景行为》《深色模式开发的最佳实践》《寻不回手工油糕》 -->
-
--
-
-## 使用本主题的博客
-
-> [!WARNING]
->
-> 修改本项目需要具备**前端开发**和**项目部署**能力。由于这是个人博客，代码经过深度定制，且可能会进行较大幅度的更新，建议您 Fork 后安心使用自己分支的版本；若需引入上游（本仓库）的新功能，建议重新 Fork 最新代码，以避免同步冲突。
->
-> 如果需要协助或有问题咨询，欢迎加入 QQ 群 169994096 讨论/闲聊，我会在空闲时尽力解答。
-
-> 主题吸收了 [Stellar](https://github.com/xaoxuu/hexo-theme-stellar) 的设计风格，命名为 **Clarity**，寓意清楚的阅读体验和清晰的观点表达。限于下游越来越多，未来将会有选择地收录。
-
-版本以站点公开信息为准（2026-09-06）。
-
-| 博客名称                                     | 作者            | 线上版本    | 特色                           |
-| -------------------------------------------- | --------------- | ----------- | ------------------------------ |
-| **[纸鹿摸鱼处](https://blog.zhilu.site/)**   | **L33Z22L11**   | v3.7.1      | 上游                           |
-| [希乐博客](https://blog.xlenco.top/)         | Xlenco          | 未公开      | 最新评论、更新日志             |
-| [Mugzx's Blog](https://blog.mugzx.top/)      | Mugzx           | v3.7.1      | 精简导航、Umami 统计           |
-| [喵洛阁](https://blog-v3.kemeow.top/)        | Kemeow815       | 未公开      | 番剧、影视、书房、游戏页       |
-| [钟神秀](https://blog.zsxcoder.top/)         | mcyzsx          | v3.6.0      | 朋友圈、即刻、装备、追番       |
-| [梦爱吃鱼](https://blog.bsgun.cn/)           | JLinmr          | v3.6.0      | 鱼塘、瞬间、最新评论           |
-| [Mikuの极光星](https://blog.sotkg.com/)      | PaloMiku        | v3.7.0      | Linux 与 Galgame 长文、游戏页  |
-| [BiuXin-s Blog](https://blog.biuxin.de/)     | damizai         | 未公开      | 鱼塘、说说、最新评论           |
-| [液泡部落格](https://blog.vacu.top/)         | VacuolePaoo     | v3.7.1      | 开发工具配置、技术与思考       |
-| [闻絮语](https://www.wxuyu.top/)             | wxuyu           | v3.6.5      | 友链轮播、追更历史、音乐控制   |
-| [落憾](https://blog.luoh.org/)               | LuoH-AN         | v3.7.1      | 原创诗词、闲言、今日诗词       |
-| [fishcpy的小破站](https://blog.fis.ink/)     | fishcpy         | v3.4.8      | 鱼塘、时间盒、监控美化         |
-| [六月墨语](https://blog.june.ink/)           | Akuma-real      | v3.7.1      | 说说、访客卡片、音乐           |
-| [Cталин博客](https://blog.jiclub.site/)      | StalinDev54     | v3.4.8      | 生活长文、动态、关于页         |
-| [栖童の小站](https://blog.linux-qitong.top/) | Linux-qitong    | v3.7.1      | 标签、友圈、Linux 实践         |
-| [鹊楠の小窝](https://blog.quenan.cn/)        | QNquenan        | v3.4.9      | 建站教程、公告、更新日志       |
-| [KingKangBlog](https://blog.kingkang.xyz/)   | KingStoning     | v3.4.9      | 标签筛选、大学随笔             |
-| [Axel's BLOG](https://blog.axelx.cn/)        | AxelEwan        | v3.7.0-rc.0 | 演唱会图文、动态               |
-| [AirTouchの小站](https://www.xsl.im/)        | AirTouch666     | v3.6.0      | 自部署教程、鱼塘、说说         |
-| [Olinl Blog](https://blog.olinl.com/)        | olinll          | v3.7.1      | 部署与容器教程、主题改造笔记   |
-| [古怪杂记本](https://blog.guuguai.site/)     | GuuGuai         | v3.6.3      | 考研复盘、Minecraft 长文       |
-| [敖苛记](https://blog.kayro.cn/)             | jeoor           | v3.7.1      | 相册、标签云、时间进度         |
-| [灯火不休时](https://blog.dhbxs.top/)        | dhbxs           | v3.7.0-rc.0 | Java 与大数据实践、碎碎念      |
-| [郭雨博](https://blog.guoyubo.cn/)           | guojiahaous-alt | v3.7.0-rc.0 | CTF 复盘、折叠好友、音乐播放器 |
-
-### 社区移植
-
-| 框架    | 项目                                                                    | 版本 / 状态 | 特色                                                                             |
-| ------- | ----------------------------------------------------------------------- | ----------- | -------------------------------------------------------------------------------- |
-| Hugo    | [it985/hugo-theme-clarity](https://github.com/it985/hugo-theme-clarity) | 开发中      | Pagefind、相册、说说                                                             |
-| Halo    | [acanyo/theme-clarity](https://github.com/acanyo/theme-clarity)         | v1.6.6      | 可配置小组件、分享海报；[应用市场](https://www.halo.run/store/apps/app-jglhpodw) |
-| Typecho | [jkjoy/theme-clarity](https://github.com/jkjoy/theme-clarity)           | v1.1.9      | 基于 Halo 版移植，图库、瞬间、追番                                               |
 
 ## 特性
 
 [主题特性](https://blog.zhilu.site/theme) · [组件示例](https://blog.zhilu.site/previews/example)
+
+## 使用说明
+
+本博客基于 Clarity 主题二次开发，以下为 Ember 博客的日常维护与使用方式。
+
+### 基本信息
+
+- 标题：**Ember**，副标题「人间烟火散尽，唯留心底余烬」
+- 作者：月月（zylunx）
+- 站点：[blog.tuuki.top](https://blog.tuuki.top)
+- 评论：自托管 [Twikoo](https://twikoo.laplace.de5.net/)
+
+### 内容
+
+文章存放在 `content/posts/`，使用 Markdown / MDC 编写，分类在 `blog.config.ts` 的 `article.categories` 中预置：
+
+| 分类 | 说明 | 图标 |
+| ---- | ---- | ---- |
+| 技术 | 实践可复用操作经验：工具/系统/部署/排障 | `tabler:mouse` |
+| 开发 | 编程：代码实现/工程实践/开发方法 | `tabler:code` |
+| 学习 | 安全/CTF/漏洞分析 | `tabler:school` |
+| 杂谈 | 观点讨论/复盘反思/行业观察 | `tabler:message` |
+| 生活 | 记录叙事：个人经历/日常片段 | `tabler:leaf` |
+
+启用 `blog.config.ts` 的 `article.useRandomPremalink` 后，`pnpm new` 创建文章时会自动生成随机 URL。
+
+### 媒体库
+
+左侧栏「娱乐」入口对应 `/media` 页面，展示动漫、电影、剧集、小说收藏。媒体类型与收藏分类在 `app/app.config.ts` 的 `media` 中注册，数据源在根目录 `media.config.ts` 配置，通过 `pnpm sync:media` 从 Bangumi 同步。
+
+### 友链
+
+友链分组定义在 `app/feeds.ts`，友链申请说明见 `content/link.md`。可运行 `pnpm check:feed` 检测单个友链、`pnpm check:feed/all` 批量检测所有友链并生成报告。
+
+### 订阅
+
+提供 Atom 订阅源 `/atom.xml`，并聚合至 `/subscriptions.opml`。
 
 ## 目录结构
 
@@ -86,6 +62,7 @@
 │   ├── components # 组件
 │   │   ├── blog # 博客布局组件
 │   │   ├── content # MDC组件
+│   │   ├── media # 媒体库组件
 │   │   ├── partial # 微型组件
 │   │   ├── popover # 弹窗组件
 │   │   ├── post # 文章组件
@@ -95,8 +72,9 @@
 │   ├── pages # 页面
 │   │   ├── [...slug].vue # 正文、404页面
 │   │   ├── archive.vue # 归档
-│   │   ├── link.vue # 友链
 │   │   ├── index.vue # 首页
+│   │   ├── link.vue # 友链
+│   │   ├── media.vue # 媒体库（娱乐）
 │   │   └── preview.vue # 预览的文章
 │   ├── plugins # Nuxt / Vue 插件
 │   ├── stores # Pinia 状态管理
@@ -128,6 +106,7 @@
 ├── blog.config.ts # 博客静态公共配置★
 ├── content.config.ts # Nuxt Content 配置
 ├── edgeone.json # EdgeOne 配置
+├── media.config.ts # 媒体库数据源同步配置
 ├── nuxt.config.ts # Nuxt 配置
 └── redirects.json # 旧站点重定向配置
 ```
