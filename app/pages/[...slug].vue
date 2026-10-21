@@ -22,6 +22,8 @@ if (post.value) {
 		ogImage: post.value.image,
 		description: post.value.description,
 	})
+	// 草稿可从直链访问以便校对，但不允许被搜索引擎收录
+	useRobotsRule(post.value.draft ? 'noindex, nofollow' : undefined)
 }
 else {
 	const event = useRequestEvent()

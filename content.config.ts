@@ -62,6 +62,8 @@ export const collections = {
 		schema: articleSchema.extend({
 			sitemap: defineSitemapSchema({
 				name: 'content',
+				// 草稿不应出现在站点地图中，等发布后再移除 frontmatter 的 draft 字段
+				filter: entry => !entry.draft,
 				onUrl: (url, entry) => {
 					const lastmod = (entry.updated || entry.published || entry.date) as string | undefined
 					if (lastmod)

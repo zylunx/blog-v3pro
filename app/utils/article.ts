@@ -1,7 +1,6 @@
 /** 查询列表需要的轻量文章字段；useAsyncData 的缓存键由页面持有。 */
 export function queryArticleIndex(path = 'posts/%') {
-	return queryCollection('content')
-		.where('stem', 'LIKE', path)
+	return wherePublished(queryCollection('content').where('stem', 'LIKE', path))
 		.select('categories', 'date', 'description', 'image', 'path', 'readingTime', 'recommend', 'tags', 'title', 'type', 'updated')
 		.all()
 }

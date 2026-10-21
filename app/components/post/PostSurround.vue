@@ -5,9 +5,10 @@ const contentPath = useContentPath().value
 
 const { data: surrounds } = await useAsyncData(
 	`surround:${contentPath}`,
-	() => queryCollectionItemSurroundings('content', contentPath, { fields: ['date', 'title', 'type'] })
-		.order('date', 'ASC')
-		.where('stem', 'LIKE', `posts/%`),
+	() => wherePublished(
+		queryCollectionItemSurroundings('content', contentPath, { fields: ['date', 'title', 'type'] })
+			.where('stem', 'LIKE', `posts/%`),
+	).order('date', 'ASC'),
 )
 
 const [prev = null, next = null] = surrounds.value ?? []

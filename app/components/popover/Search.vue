@@ -13,9 +13,9 @@ const segmenter = Intl.Segmenter && new Intl.Segmenter(appConfig.language, { gra
 // await useAsyncData() 会阻塞渲染
 const { data, status } = await useLazyAsyncData(
 	'search',
-	() => queryCollectionSearchSections('content', {
+	() => wherePublished(queryCollectionSearchSections('content', {
 		ignoredTags: ['pre'],
-	}),
+	})),
 )
 
 const miniSearch = computed(() => {
