@@ -7,7 +7,7 @@ const basicConfig = {
 	description: '分享学习笔记、技术实践与日常生活。',
 	author: {
 		name: '月月',
-		avatar: 'https://blog.tuuki.top/logo.png',
+		avatar: 'https://blog.tuuki.top/favicon.ico',
 		email: 'zylunx@linux.do',
 		homepage: '/',
 	},
@@ -16,7 +16,7 @@ const basicConfig = {
 		name: '署名-非商业性使用-相同方式共享 4.0 国际',
 		url: 'https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans',
 	},
-	favicon: '/logo.png',
+	favicon: '/favicon.ico',
 	language: 'zh-CN',
 	timeEstablished: '2026-10-13',
 	timeZone: 'Asia/Shanghai',
@@ -108,7 +108,7 @@ export const myFeed: FeedEntry = {
 	feed: new URL('/atom.xml', blogConfig.url).toString(),
 	icon: blogConfig.favicon,
 	avatar: blogConfig.author.avatar,
-	archs: ['Nuxt'],
+	archs: ['Nuxt','Moon'],
 	date: blogConfig.timeEstablished,
 	comment: '这是我自己',
 }
