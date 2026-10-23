@@ -27,3 +27,5 @@ logs
 .vercel
 content/posts/test.md
 .workbuddy/
+docs/
+logo-output/

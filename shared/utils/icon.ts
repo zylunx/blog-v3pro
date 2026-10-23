@@ -34,6 +34,7 @@ const archIcons = {
 	'VuePress': 'uim:vuejs',
 	'WordPress': 'simple-icons:wordpress',
 	'Zeabur': 'tabler:square-letter-z-filled', // 不准确
+	'Moon' : 'token-branded:moon', //我自己的
 	'国内 CDN': 'tabler:cloud-data-connection',
 	'服务器': 'tabler:server',
 	'虚拟主机': 'tabler:cloud-upload',
@@ -79,6 +80,7 @@ const mainDomainIcons: Record<string, string> = {
 	'vercel.app': 'simple-icons:vercel',
 	'zabaur.app': 'tabler:square-letter-z-filled',
 	'zhihu.com': 'ri:zhihu-line',
+	'linux.do' : 'simple-icons:linux',
 }
 
 /** 专门域名图标映射，优先级高于主域名图标 */
