@@ -15,12 +15,26 @@ const asideWidgetNames = computed<WidgetName[]>(() => {
 })
 const { widgets } = useWidgets(asideWidgetNames)
 
+const appConfig = useAppConfig()
+const postCategory = computed(() => post.value?.categories?.[0])
+const postAccent = computed(() =>
+	appConfig.article.categories[postCategory.value ?? '']?.color ?? '#3B82F6',
+)
+
 if (post.value) {
 	useSeoMeta({
 		title: post.value.title,
 		ogType: 'article',
-		ogImage: post.value.image,
 		description: post.value.description,
+	})
+	defineOgImage('BlogPost', {
+		title: post.value.title,
+		description: post.value.description,
+		category: postCategory.value ?? '未分类',
+		author: appConfig.author.name,
+		date: post.value.updated || post.value.date || '',
+		accent: postAccent.value,
+		site: appConfig.title,
 	})
 	// 草稿可从直链访问以便校对，但不允许被搜索引擎收录
 	useRobotsRule(post.value.draft ? 'noindex, nofollow' : undefined)

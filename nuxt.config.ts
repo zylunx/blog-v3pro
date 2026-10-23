@@ -192,6 +192,23 @@ export default defineNuxtConfig({
 		},
 	},
 
+	/** 自托管字体：构建期下载并镜像到 /_fonts，不再依赖第三方 CDN 的可用性 */
+	fonts: {
+		defaults: {
+			preload: true,
+			// InterVariable 是可变字体，整段字重一次加载
+			weights: ['100 900'],
+		},
+		// 逐字族声明来源，避免被其它 provider 抢先解析
+		families: [
+			{ name: 'InterVariable', provider: 'google' },
+			{ name: 'JetBrains Mono', provider: 'google' },
+			{ name: 'Noto Serif SC', provider: 'google' },
+		],
+		// 抖音美好体不在 Google Fonts 上，保持原有第三方引入
+		processCSSVariables: 'font-prefixed-only',
+	},
+
 	hooks: {
 		'ready': () => {
 			console.info(`
@@ -258,7 +275,16 @@ ${packageJson.homepage}
 	},
 
 	ogImage: {
-		enabled: false,
+		enabled: true,
+		// 站点为 SSG，图片在构建期一次性生成，运行时无需按需渲染
+		zeroRuntime: true,
+		defaults: {
+			width: 1200,
+			height: 600,
+			extension: 'png',
+			// 分享卡片不需要 emoji，避免构建期拉取图标集
+			emojis: false,
+		},
 	},
 
 	robots: {
