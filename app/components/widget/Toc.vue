@@ -21,6 +21,7 @@ function hasHeading(tocTree: TocLink, heading?: string): boolean {
 	ref="toc"
 	title="文章目录"
 	shrink
+	sticky
 	:style="{ minHeight: `clamp(4rem, ${tocOffsets.length}rem, 20rem)` }"
 >
 	<template #action>

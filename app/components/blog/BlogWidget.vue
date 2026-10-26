@@ -7,6 +7,7 @@ defineProps<{
 	dim?: boolean
 	bgImg?: string
 	bgAside?: boolean
+	sticky?: boolean
 }>()
 
 const body = useTemplateRef('widget-body')
@@ -18,7 +19,7 @@ defineExpose({ body })
 <section
 	class="blog-widget"
 	data-transition-enter
-	:class="{ shrink, grayscale, dim }"
+	:class="{ shrink, grayscale, dim, sticky }"
 >
 	<hgroup class="widget-header text-creative">
 		<slot name="title">
@@ -70,6 +71,16 @@ defineExpose({ body })
 		#blog-aside.show & {
 			opacity: 1;
 		}
+	}
+
+	/* 在侧栏滚动容器内常驻置顶（如文章目录），背景遮住下方滚动内容。 */
+	&.sticky {
+		position: sticky;
+		top: 0;
+		z-index: 2;
+		background-color: var(--c-bg);
+		border-radius: 0.8rem;
+		box-shadow: 0 0.6rem 0.6rem -0.4rem var(--box-shadow-1);
 	}
 }
 

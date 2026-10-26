@@ -7,7 +7,7 @@ const basicConfig = {
 	description: '分享学习笔记、技术实践与日常生活。',
 	author: {
 		name: '月月',
-		avatar: 'https://blog.tuuki.top/favicon.ico',
+		avatar: 'https://blog.tuuki.top/avatar.png',
 		email: 'zylunx@linux.do',
 		homepage: '/',
 	},

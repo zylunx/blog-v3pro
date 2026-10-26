@@ -11,7 +11,7 @@ const excerpt = computed(() => post.value?.description || '')
 const asideWidgetNames = computed<WidgetName[]>(() => {
 	if (!post.value)
 		return ['blog-log']
-	return (post.value.meta?.aside as WidgetName[] | undefined) ?? ['toc']
+	return (post.value.meta?.aside as WidgetName[] | undefined) ?? ['toc', 'tag-cloud', 'recent-posts']
 })
 const { widgets } = useWidgets(asideWidgetNames)
 

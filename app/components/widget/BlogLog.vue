@@ -1,10 +1,11 @@
 <script setup lang="ts">
-const { timeEstablished } = useAppConfig()
+import { changelog } from '~~/shared/changelog'
 
-const blogLog = [
-	{ label: '2026-10-15', value: '使用 zhilu 博客框架' },
-	{ label: timeEstablished, value: '发布第一篇文章' },
-]
+// 与「更新日志」页面共用同一数据源，仅展示最近 3 条
+const blogLog = computed(() => changelog.slice(0, 3).map(release => ({
+  label: release.date,
+  value: release.title ? `${release.title}（v${release.version}）` : `v${release.version}`,
+})))
 </script>
 
 <template>

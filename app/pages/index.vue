@@ -10,7 +10,8 @@ useSeoMeta({
 const { data: listRaw } = await useAsyncData('posts:index', () => queryArticleIndex(), { default: () => [] })
 const { listSorted, isAscending, sortOrder } = useArticleSort(listRaw, { bindDirectionQuery: 'asc', bindOrderQuery: 'sort' })
 const { category, categories, listCategorized } = useArticleCategory(listSorted, { bindQuery: 'category' })
-const { page, totalPages, listPaged } = usePagination(listCategorized, { bindQuery: 'page' })
+const { tag, listTagged } = useArticleTags(listCategorized, { bindQuery: 'tag' })
+const { page, totalPages, listPaged } = usePagination(listTagged, { bindQuery: 'page' })
 
 useSeoMeta({ title: () => (page.value > 1 ? `第${page.value}页` : '') })
 
@@ -30,7 +31,7 @@ const { data: previewCount } = useAsyncData(
 <template #aside>
 	<WidgetBlogStats />
 	<WidgetBlogTech />
-	<WidgetCommGroup />
+	<WidgetTagCloud />
 </template>
 
 <BlogHeader class="hide-above-mobile" to="/" tag="h1" />
@@ -53,6 +54,13 @@ const { data: previewCount } = useAsyncData(
 		</ZSecret>
 	</PostOrderToggle>
 
+	<div v-if="tag" class="active-tag">
+		<span>标签筛选：<b>{{ tag }}</b></span>
+		<button aria-label="清除标签筛选" @click="tag = undefined">
+			<Icon name="tabler:x" />
+		</button>
+	</div>
+
 	<UtilListTransition v-slot="{ items, state }" :items="listPaged" :state="sortOrder">
 		<menu class="proper-height">
 			<PostArticle
@@ -74,5 +82,31 @@ const { data: previewCount } = useAsyncData(
 <style scoped>
 .post-list {
 	margin: 1rem;
+}
+
+.active-tag {
+	display: flex;
+	align-items: center;
+	gap: 0.5em;
+	margin: 0.5rem 0.2rem;
+	padding: 0.4em 0.7em;
+	border-radius: 0.6em;
+	width: fit-content;
+	font-size: 0.85em;
+	color: var(--c-text);
+	background-color: var(--c-bg-soft);
+
+	> b {
+		color: var(--c-primary);
+	}
+
+	> button {
+		display: inline-flex;
+		transition: color 0.2s;
+
+		&:hover {
+			color: var(--c-primary);
+		}
+	}
 }
 </style>

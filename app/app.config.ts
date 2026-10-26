@@ -144,10 +144,11 @@ export default defineAppConfig({
 		{
 			title: '',
 			items: [
-				{ icon: 'tabler:files', text: '文章', url: '/' },
-				{ icon: 'tabler:link', text: '友链', url: '/link' },
-				{ icon: 'tabler:archive', text: '归档', url: '/archive' },
-				{ icon: 'tabler:devices', text: '娱乐', url: '/media' },
+			{ icon: 'tabler:files', text: '文章', url: '/' },
+			{ icon: 'tabler:link', text: '友链', url: '/link' },
+			{ icon: 'tabler:archive', text: '归档', url: '/archive' },
+			{ icon: 'tabler:history', text: '更新日志', url: '/changelog' },
+			{ icon: 'tabler:devices', text: '娱乐', url: '/media' },
 			],
 		},
 	] satisfies Nav,
