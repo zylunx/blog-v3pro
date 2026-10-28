@@ -53,6 +53,16 @@ export const changelogTypeOrder: ChangelogType[] = [
 
 export const changelog: ChangelogRelease[] = [
   {
+    version: '1.3.0',
+    date: '2026-10-28',
+    title: '服务状态监控',
+    changes: [
+      { type: 'added', text: '新增「服务状态」页面（/status），展示 Uptime Kuma 的监控分组、可用率与心跳' },
+      { type: 'added', text: '页脚导航增加「服务状态」入口' },
+      { type: 'improved', text: '状态页在构建期抓取快照，实时接口不可达时仍可查看最近数据' },
+    ],
+  },
+  {
     version: '1.2.0',
     date: '2026-10-26',
     title: '更新日志与标签云',

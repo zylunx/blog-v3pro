@@ -1,5 +1,6 @@
 import type { MediaConfig } from '~/types/media'
 import type { Nav, NavItem } from '~/types/nav'
+import type { StatusConfig } from '~/types/status'
 import { pascalCase } from 'es-toolkit/string'
 import { Temporal } from 'temporal-polyfill'
 import blogConfig from '~~/blog.config'
@@ -71,6 +72,8 @@ export default defineAppConfig({
 				title: '探索',
 				items: [
 					{ icon: 'tabler:rss', text: 'Atom订阅', url: '/atom.xml' },
+					{ icon: 'tabler:activity-heartbeat', text: '服务状态', url: '/status' },
+					{ icon: 'tabler:history', text: '更新日志', url: '/changelog' },
 					{ icon: 'ri:subway-line', text: '开往', url: 'https://www.travellings.cn/go.html' },
 				],
 			},
@@ -144,11 +147,10 @@ export default defineAppConfig({
 		{
 			title: '',
 			items: [
-			{ icon: 'tabler:files', text: '文章', url: '/' },
-			{ icon: 'tabler:link', text: '友链', url: '/link' },
-			{ icon: 'tabler:archive', text: '归档', url: '/archive' },
-			{ icon: 'tabler:history', text: '更新日志', url: '/changelog' },
-			{ icon: 'tabler:devices', text: '娱乐', url: '/media' },
+				{ icon: 'tabler:files', text: '文章', url: '/' },
+				{ icon: 'tabler:link', text: '友链', url: '/link' },
+				{ icon: 'tabler:archive', text: '归档', url: '/archive' },
+				{ icon: 'tabler:devices', text: '娱乐', url: '/media' },
 			],
 		},
 	] satisfies Nav,
@@ -160,6 +162,16 @@ export default defineAppConfig({
 		/** 允许（普通/预览/归档）文章列表正序，开启后排序方式左侧图标可切换顺序 */
 		allowAscending: false,
 	},
+
+	/** 服务监控页面（/status），数据来自 Uptime Kuma 状态页 */
+	status: {
+		/** Uptime Kuma 站点地址，末尾不带斜杠；若状态页接口未开放跨域，可改为同源反向代理路径 */
+		baseURL: 'https://status.netbox.ccwu.cc',
+		/** 状态页 slug，即 /status/{slug} 的最后一段 */
+		slug: 'mybox',
+		title: '服务状态',
+		description: '本站依赖的各项服务运行状况，数据来自 Uptime Kuma，打开页面时自动刷新。',
+	} satisfies StatusConfig,
 
 	themes: {
 		light: {

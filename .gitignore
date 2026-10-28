@@ -29,3 +29,4 @@ content/posts/test.md
 .workbuddy/
 docs/
 logo-output/
+.pnpm-store/
