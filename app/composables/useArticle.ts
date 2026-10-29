@@ -10,7 +10,8 @@ export function useArticle(path?: MaybeRefOrGetter<string | undefined>) {
 	return {
 		dataKey,
 		post,
-		toc: computed(() => post.value?.body.toc),
+		// 加密文章在解锁前正文被替换为占位树，body 始终存在；此处仍做空值保护
+		toc: computed(() => post.value?.body?.toc),
 		metaSlots: computed(() => post.value?.meta.slots as Record<string, MetaSlotsTree> | undefined),
 	}
 }

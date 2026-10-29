@@ -53,6 +53,17 @@ export const changelogTypeOrder: ChangelogType[] = [
 
 export const changelog: ChangelogRelease[] = [
   {
+    version: '1.4.0',
+    date: '2026-10-29',
+    title: '文章密码保护',
+    changes: [
+      { type: 'added', text: '新增文章密码保护：frontmatter 设置 password（支持 env: 变量）后，正文构建期以 AES-256-GCM 加密，浏览器本地解密，密码不进产物' },
+      { type: 'added', text: '解锁卡片支持错误密码拒绝与 sessionStorage 记忆，刷新自动解锁' },
+      { type: 'added', text: '加密文章在列表/归档/轮播/最新文章/相邻导航处显示小锁标识（PostLockIcon）' },
+      { type: 'improved', text: '搜索索引、atom.xml、sitemap 与 llms.txt 自动排除加密文章，避免正文泄露' },
+    ],
+  },
+  {
     version: '1.3.0',
     date: '2026-10-28',
     title: '服务状态监控',

@@ -14,7 +14,10 @@ const recent = computed(() => orderBy(list.value, ['date'], ['desc']).slice(0, p
 	<ol class="recent-list">
 		<li v-for="post in recent" :key="post.path">
 			<UtilLink :to="post.path" class="recent-link">
-				<span class="recent-title">{{ post.title }}</span>
+				<span class="recent-title">
+					{{ post.title }}
+					<PostLockIcon v-if="post.locked" small />
+				</span>
 				<UtilDate class="recent-date" :date="post.date ?? post.updated" relative />
 			</UtilLink>
 		</li>

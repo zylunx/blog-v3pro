@@ -260,7 +260,7 @@ ${packageJson.homepage}
 		domain: blogConfig.url,
 		title: blogConfig.title,
 		description: blogConfig.description,
-		// 只公开正式文章：排除 draft，也排除 /preview 草稿区
+		// 只公开正式文章：排除 draft，也排除 /preview 草稿区与加密文章
 		sections: [
 			{
 				title: 'Posts',
@@ -268,6 +268,7 @@ ${packageJson.homepage}
 				contentFilters: [
 					{ field: 'stem', operator: 'LIKE', value: 'posts/%' },
 					{ field: 'draft', operator: '=', value: false as unknown as string },
+					{ field: 'locked', operator: '=', value: false as unknown as string },
 				],
 			},
 		],

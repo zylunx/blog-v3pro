@@ -6,7 +6,7 @@ const contentPath = useContentPath().value
 const { data: surrounds } = await useAsyncData(
 	`surround:${contentPath}`,
 	() => wherePublished(
-		queryCollectionItemSurroundings('content', contentPath, { fields: ['date', 'title', 'type'] })
+		queryCollectionItemSurroundings('content', contentPath, { fields: ['date', 'locked', 'title', 'type'] })
 			.where('stem', 'LIKE', `posts/%`),
 	).order('date', 'ASC'),
 )
@@ -29,6 +29,7 @@ const [DefineTemplate, ReuseTemplate] = createReusableTemplate<{
 		<div class="surround-text">
 			<strong class="title" :class="getPostTypeClassName(post?.type)">
 				{{ post?.title || fallbackText }}
+				<PostLockIcon v-if="post?.locked" small />
 			</strong>
 			<UtilDate v-if="post?.date" class="date" :date="post.date" />
 		</div>

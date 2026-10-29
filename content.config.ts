@@ -24,6 +24,10 @@ export interface ArticleSchema {
 	/** TODO */
 	draft?: boolean
 	permalink?: string
+	/** 是否加密（由构建期加密模块写入，不可在 frontmatter 中手动设置） */
+	locked?: boolean
+	/** 密文文件名（由构建期加密模块写入） */
+	lockId?: string
 
 	readingTime?: ReadTimeResults
 }
@@ -46,6 +50,9 @@ const articleSchema = z.object({
 	})).optional(),
 	draft: z.boolean().default(false),
 	permalink: z.string().optional(),
+	// password 由构建期加密模块读取后立即丢弃，不声明即可被 schema 剥离，避免密码进入内容库与 payload
+	locked: z.boolean().default(false),
+	lockId: z.string().optional(),
 
 	readingTime: z.object({
 		text: z.string(),
@@ -63,7 +70,8 @@ export const collections = {
 			sitemap: defineSitemapSchema({
 				name: 'content',
 				// 草稿不应出现在站点地图中，等发布后再移除 frontmatter 的 draft 字段
-				filter: entry => !entry.draft,
+				// 加密文章同理：标题与路径也不应进索引
+				filter: entry => !entry.draft && !entry.locked,
 				onUrl: (url, entry) => {
 					const lastmod = (entry.updated || entry.published || entry.date) as string | undefined
 					if (lastmod)

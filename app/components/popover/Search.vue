@@ -15,7 +15,8 @@ const { data, status } = await useLazyAsyncData(
 	'search',
 	() => wherePublished(queryCollectionSearchSections('content', {
 		ignoredTags: ['pre'],
-	})),
+		// 加密文章的正文不在库中，标题也不应进入搜索索引
+	})).where('locked', '=', false),
 )
 
 const miniSearch = computed(() => {

@@ -42,7 +42,10 @@ function renderContent(post: ContentCollectionItem) {
 
 export default defineEventHandler(async (event) => {
 	const posts = await wherePublished(
-		queryCollection(event, 'content').where('stem', 'LIKE', 'posts/%'),
+		queryCollection(event, 'content')
+			.where('stem', 'LIKE', 'posts/%')
+			// 加密文章不出现在订阅源中，避免标题与摘要外泄
+			.where('locked', '=', false),
 	)
 		.order('updated', 'DESC')
 		.limit(blogConfig.feed.limit)
