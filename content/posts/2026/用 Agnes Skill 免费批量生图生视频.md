@@ -135,7 +135,7 @@ python ~/skills/agnes/scripts/agnes_client.py video "<优化后的英文视频�
 
 这个 Skill 已经发布到 SkillHub —— 国内优先的 Skill 商店，搜索 / 安装都走国内源，更快也更合规。Skill 页面长这样：
 
-:::link-card{icon="https://skillhub.cn/favicon.ico" title="agnes生图生视频 @ SkillHub" description="作者 碧云无渡 · v1.0.0 · AI 评分 4.6 · 安全无风险" link="https://skillhub.cn/skills/user_3ab9b44e/agents-img-make"}
+:::link-card{icon="https://cloudcache.tencent-cloud.com/qcloud/ui/static/other_external_resource/2e166ec6-6f47-4c6d-9915-3f0d75192b56.png" title="agnes生图生视频 @ SkillHub" description="作者 碧云无渡 · v1.0.0 · AI 评分 4.6 · 安全无风险" link="https://skillhub.cn/skills/user_3ab9b44e/agents-img-make"}
 :::
 
 ### 安装方式一：把提示词发给你的 AI（推荐，零配置）
