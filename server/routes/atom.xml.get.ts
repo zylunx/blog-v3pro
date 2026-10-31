@@ -96,7 +96,6 @@ export default defineEventHandler(async (event) => {
 
 	return builder.build({
 		'?xml': { $version: '1.0', $encoding: 'UTF-8' },
-		'?xml-stylesheet': blogConfig.feed.enableStyle ? { $type: 'text/xsl', $href: '/assets/atom.xsl' } : undefined,
 		feed,
 	})
 })

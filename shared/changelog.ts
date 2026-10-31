@@ -53,6 +53,15 @@ export const changelogTypeOrder: ChangelogType[] = [
 
 export const changelog: ChangelogRelease[] = [
   {
+    version: '1.4.1',
+    date: '2026-10-31',
+    title: '订阅体验优化',
+    changes: [
+      { type: 'changed', text: 'atom.xml 移除 XSLT 样式表引用，规避 Chrome 弃用 XSLT 后的显示告警与失效问题' },
+      { type: 'added', text: '新增人类可读的「订阅」页面（/feed），复用站点主题展示近期文章并引导订阅 Atom 源' },
+    ],
+  },
+  {
     version: '1.4.0',
     date: '2026-10-29',
     title: '文章密码保护',

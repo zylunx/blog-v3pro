@@ -65,10 +65,8 @@ const blogConfig = {
 
 	/** 博客 Atom 订阅源 */
 	feed: {
-		/** 订阅源最大文章数量 */
+		/** 订阅源最大文章数量（同时用于 /feed 页展示条数） */
 		limit: 50,
-		/** 订阅源是否启用XSLT样式 */
-		enableStyle: true,
 	},
 
 	/** 向 <head> 中添加脚本 */
