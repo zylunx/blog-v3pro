@@ -11,17 +11,10 @@ tags: [Agnes, AI 生图, AI 生视频, WorkBuddy, Skill, SkillHub, 多 Key 轮�
 
 Agnes AI 提供了一套走 OpenAI 兼容协议的免费全模态模型，能文生图、文生视频、图生视频。一句话就能触发——「生成一张图片 / 出个图 / 做个视频 / 图生视频」，Skill 就会被唤起。
 
-但免费额度下直接裸调接口，有几个绕不开的现实痛点：**图片接口限流严格，单把 Key 很容易撞上 429；国际站和中国站的 Key 不能混用，否则直接 401；一次要出好几张时，更是分分钟把 RPM 打爆。** 这个 Skill 把多 Key 轮询、令牌桶限流、自动故障转移、异步轮询这些工程细节全部消化掉，让你用一句自然语言就能批量出图、出视频，而不是先去写一坨调度代码。
-
-## :::link-card
-
-icon: <https://github.com/favicon.ico>  
-title: Agnes AI 全模态模型  
-description: OpenAI 兼容协议，免费额度下的文生图 / 文生视频 / 图生视频能力  
-link: <https://agnes.ai>
-------------------------
-
+:::link-card{icon="https://github.com/favicon.ico" title="Agnes AI 全模态模型" description="OpenAI 兼容协议，免费额度下的文生图 / 文生视频 / 图生视频能力" link="https://agnes.ai"}
 :::
+
+但免费额度下直接裸调接口，有几个绕不开的现实痛点：**图片接口限流严格，单把 Key 很容易撞上 429；国际站和中国站的 Key 不能混用，否则直接 401；一次要出好几张时，更是分分钟把 RPM 打爆。** 这个 Skill 把多 Key 轮询、令牌桶限流、自动故障转移、异步轮询这些工程细节全部消化掉，让你用一句自然语言就能批量出图、出视频，而不是先去写一坨调度代码。
 
 ## 它解决了什么
 
@@ -98,21 +91,21 @@ python ~/skills/agnes/scripts/agnes_client.py config --set-rpm 3 --set-size 1344
 
 关键字段一览，绝大多数都能按你的额度情况调整：
 
-| 字段                             | 默认值                     | 说明                                  |
-| :----------------------------- | :---------------------- | :---------------------------------- |
-| `site`                         | `global`                | 全局默认站点：`global` / `cn` / `fallback` |
-| `keys`                         | —                       | 支持每把 Key 单独指定站点（如 `cn:sk-cn-xxx`）   |
-| `model_image`                  | `agnes-image-2.1-flash` | 默认推荐生图模型                            |
-| `model_video`                  | `agnes-video-v2.0`      | 默认推荐生视频模型                           |
-| `rpm_per_key`                  | `3`                     | 单 Key 每分钟请求数（令牌桶容量）                 |
-| `image_size`                   | `1024x1024`             | 默认生图尺寸                              |
-| `key_cooldown_secs`            | `600`                   | 遇 `401 / 403` 时该 Key 冷却时长           |
-| `key_rate_limit_cooldown_secs` | `60`                    | 遇 `429` 时该 Key 冷却时长                 |
-| `video_poll_interval_secs`     | `5`                     | 视频任务轮询间隔                            |
-| `video_deadline_secs`          | `480`                   | 视频任务最长等待时间                          |
+| 字段 | 默认值 | 说明 |
+| :--- | :--- | :--- |
+| `site` | `global` | 全局默认站点：`global` / `cn` / `fallback` |
+| `keys` | — | 支持每把 Key 单独指定站点（如 `cn:sk-cn-xxx`） |
+| `model_image` | `agnes-image-2.1-flash` | 默认推荐生图模型 |
+| `model_video` | `agnes-video-v2.0` | 默认推荐生视频模型 |
+| `rpm_per_key` | `3` | 单 Key 每分钟请求数（令牌桶容量） |
+| `image_size` | `1024x1024` | 默认生图尺寸 |
+| `key_cooldown_secs` | `600` | 遇 `401 / 403` 时该 Key 冷却时长 |
+| `key_rate_limit_cooldown_secs` | `60` | 遇 `429` 时该 Key 冷却时长 |
+| `video_poll_interval_secs` | `5` | 视频任务轮询间隔 |
+| `video_deadline_secs` | `480` | 视频任务最长等待时间 |
 
-::alert{type="warning" title="Key 与站点必须匹配"}  
-每把 Key 的归属站点必须和它实际调用时用的站点一致，否则会返回 401。当你混合使用不同站点的 Key 时，**务必用 `cn:` 前缀标注清楚**，否则轮询到错误站点会直接失败。  
+::alert{type="warning" title="Key 与站点必须匹配"}
+每把 Key 的归属站点必须和它实际调用时用的站点一致，否则会返回 401。当你混合使用不同站点的 Key 时，**务必用 `cn:` 前缀标注清楚**，否则轮询到错误站点会直接失败。
 ::
 
 ## 使用
@@ -142,14 +135,7 @@ python ~/skills/agnes/scripts/agnes_client.py video "<优化后的英文视频�
 
 这个 Skill 已经发布到 SkillHub —— 国内优先的 Skill 商店，搜索 / 安装都走国内源，更快也更合规。Skill 页面长这样：
 
-## :::link-card
-
-icon: <https://skillhub.cn/favicon.ico>  
-title: agnes生图生视频 @ SkillHub  
-description: 作者 碧云无渡 · v1.0.0 · AI 评分 4.6 · 安全无风险  
-link: <https://skillhub.cn/skills/user_3ab9b44e/agents-img-make>
-----------------------------------------------------------------
-
+:::link-card{icon="https://skillhub.cn/favicon.ico" title="agnes生图生视频 @ SkillHub" description="作者 碧云无渡 · v1.0.0 · AI 评分 4.6 · 安全无风险" link="https://skillhub.cn/skills/user_3ab9b44e/agents-img-make"}
 :::
 
 ### 安装方式一：把提示词发给你的 AI（推荐，零配置）
@@ -180,12 +166,11 @@ skillhub install @user_3ab9b44e/agents-img-make --dir ~/.workbuddy/skills/
 
 如果你更想直接拿源码本地部署，完整源码与配置样例也打包在下方链接，下载后放进 `~/skills/agnes/` 即可：
 
-## :::link-card
-
-icon: <https://pan.ezv.cc/favicon.ico>  
-title: Agnes Skill 源码包（含 SKILL.md / 客户端 / API 契约）  
-description: 核心客户端仅用标准库，零第三方依赖，可直接落地使用  
-link: <https://pan.ezv.cc/v/67ad442b821feaab58b4f2d336052aa3>
--------------------------------------------------------------
-
+:::link-card{icon="https://pan.ezv.cc/favicon.ico" title="Agnes Skill 源码包（含 SKILL.md / 客户端 / API 契约）" description="核心客户端仅用标准库，零第三方依赖，可直接落地使用" link="https://pan.ezv.cc/v/67ad442b821feaab58b4f2d336052aa3"}
 :::
+
+## 小结
+
+这个 Skill 的价值不在于「能调 Agnes 接口」——那一步谁都会。真正的功夫在它把免费额度下那些磨人的工程细节（限流、Key 冷却、站点路由、视频轮询）一次性消化干净，让你把注意力放回「描述你想要什么」这件事本身上。多 Key 轮询摊薄了单 Key 风险，令牌桶兜住了 RPM，故障转移挡住了偶发 401/429，两阶段异步则把视频这种长任务变得无需等待。
+
+:quote[如果你也想在免费额度下，用一句自然语言就批量出图、出视频，而不是先去写一坨调度代码——这个 Agnes Skill 就是干这件事的。]
