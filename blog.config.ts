@@ -8,6 +8,8 @@ const basicConfig = {
 	author: {
 		name: '月月',
 		avatar: 'https://blog.tuuki.top/avatar.png',
+		/** 深色主题下的头像（橙焰 + 白环），与浅色 avatar 配套 */
+		avatarDark: '/avatar-dark.png',
 		email: 'zylunx@linux.do',
 		homepage: '/',
 	},
@@ -17,6 +19,8 @@ const basicConfig = {
 		url: 'https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans',
 	},
 	favicon: '/favicon.ico',
+	/** 主题自适应 favicon（环色随 prefers-color-scheme 切换深/白） */
+	faviconSvg: '/favicon.svg',
 	language: 'zh-CN',
 	timeEstablished: '2026-10-13',
 	timeZone: 'Asia/Shanghai',

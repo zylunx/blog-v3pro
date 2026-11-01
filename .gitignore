@@ -29,4 +29,5 @@ content/posts/test.md
 .workbuddy/
 docs/
 logo-output/
+agnes-output/
 .pnpm-store/

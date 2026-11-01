@@ -5,6 +5,11 @@ withDefaults(defineProps<{
 	tag: 'div',
 })
 const appConfig = useAppConfig()
+const colorMode = useColorMode()
+// 跟随站点实际主题切换 Logo：浅色用橙焰+深环，深色用橙焰+白环
+const logoSrc = computed(() =>
+	colorMode.value === 'dark' ? appConfig.header.logoDark : appConfig.header.logo,
+)
 </script>
 
 <template>
@@ -20,7 +25,7 @@ const appConfig = useAppConfig()
 	</div>
 
 	<NuxtImg
-		:src="appConfig.header.logo"
+		:src="logoSrc"
 		class="blog-logo round-cobblestone"
 		:class="{ circle: appConfig.header.showTitle }"
 		:alt="appConfig.title"
