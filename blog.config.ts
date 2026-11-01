@@ -7,10 +7,13 @@ const basicConfig = {
 	description: '分享学习笔记、技术实践与日常生活。',
 	author: {
 		name: '月月',
+		/** 绝对地址，供 OG / feed 使用 */
 		avatar: 'https://blog.tuuki.top/avatar.png',
+		/** 站内 Logo 用相对地址：静态站下走 IPX 会生成预热不了的图片路由 */
+		avatarLight: '/avatar.png',
 		/** 深色主题下的头像（橙焰 + 白环），与浅色 avatar 配套 */
 		avatarDark: '/avatar-dark.png',
-		email: 'zylunx@linux.do',
+		email: 'admin@tuuki.top',
 		homepage: '/',
 	},
 	copyright: {
@@ -18,6 +21,7 @@ const basicConfig = {
 		name: '署名-非商业性使用-相同方式共享 4.0 国际',
 		url: 'https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans',
 	},
+	/** ico 兜底：供旧浏览器与 feed（atom.xml）使用 */
 	favicon: '/favicon.ico',
 	/** 主题自适应 favicon（环色随 prefers-color-scheme 切换深/白） */
 	faviconSvg: '/favicon.svg',

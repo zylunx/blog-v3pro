@@ -98,7 +98,7 @@ export default defineAppConfig({
 
 	/** 左侧栏顶部 Logo */
 	header: {
-		logo: blogConfig.author.avatar,
+		logo: blogConfig.author.avatarLight,
 		/** 深色主题下的 Logo（橙焰 + 白环），与 logo 配套 */
 		logoDark: blogConfig.author.avatarDark,
 		/** 展示标题文本，否则展示纯 Logo */

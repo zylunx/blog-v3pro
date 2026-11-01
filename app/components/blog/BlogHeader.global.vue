@@ -24,11 +24,13 @@ const logoSrc = computed(() =>
 		/>
 	</div>
 
-	<NuxtImg
+	<!-- 用原生 img 直出：站内相对路径若走 IPX 会生成构建期无法预热的 /_ipx 路由（静态部署 404） -->
+	<img
 		:src="logoSrc"
 		class="blog-logo round-cobblestone"
 		:class="{ circle: appConfig.header.showTitle }"
 		:alt="appConfig.title"
+		decoding="async"
 	/>
 
 	<div v-if="appConfig.header.showTitle" class="blog-text">
