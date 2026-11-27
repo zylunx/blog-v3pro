@@ -62,6 +62,8 @@ interface CliArgs {
 	dryRun: boolean
 	prune: boolean
 	offline: boolean
+	/** 抓取失败且无缓存时直接失败退出（默认降级跳过，保证构建不被数据源抖动打断） */
+	strict: boolean
 	help: boolean
 }
 
@@ -96,7 +98,7 @@ function sleep(ms: number): Promise<void> {
 
 // #region CLI
 function parseArgs(argv: string[]): CliArgs {
-	const args: CliArgs = { dryRun: false, prune: false, offline: false, help: false }
+	const args: CliArgs = { dryRun: false, prune: false, offline: false, strict: false, help: false }
 	for (let i = 0; i < argv.length; i++) {
 		const arg = argv[i]
 		if (arg === '--username' || arg === '-u')
@@ -109,6 +111,8 @@ function parseArgs(argv: string[]): CliArgs {
 			args.prune = true
 		else if (arg === '--offline')
 			args.offline = true
+		else if (arg === '--strict')
+			args.strict = true
 		else if (arg === '--help' || arg === '-h')
 			args.help = true
 		else
@@ -126,6 +130,7 @@ function printHelp(): void {
   -u, --username <name>   Bangumi 用户名（优先于 media.config.ts 与 $BANGUMI_USERNAME）
       --dry-run           只试算并打印摘要，不写 media.yaml 与缓存
       --offline           仅使用本地缓存，不发起网络请求
+      --strict            抓取失败且无本地缓存时以非零码退出（默认降级跳过）
       --prune             删除本地存在、但已不在 Bangumi 收藏中的条目（谨慎使用）
   -h, --help              显示本帮助
 
@@ -368,6 +373,8 @@ async function main(): Promise<void> {
 	const typeKeys = Object.keys(cfg.typeMap)
 	const remote: MediaEntry[] = []
 	const cachedTypes: number[] = []
+	/** 既未抓到、也没有缓存，本次被跳过的类型 */
+	const missingTypes: number[] = []
 	let skipped = 0
 
 	for (const [index, key] of typeKeys.entries()) {
@@ -389,8 +396,17 @@ async function main(): Promise<void> {
 		if (!collections) {
 			collections = readCache(subjectType)
 			if (!collections) {
-				console.error(`✗ subject_type=${subjectType} 无本地缓存可用（首次使用请先联网同步一次）`)
-				process.exit(1)
+				const reason = `subject_type=${subjectType} 无本地缓存可用（首次使用请先联网同步一次）`
+				if (args.strict) {
+					console.error(`✗ ${reason}`)
+					process.exit(1)
+				}
+				// 构建期不允许因为数据源抖动而失败：跳过该类型，media.yaml 中已有条目原样保留
+				console.warn(`⚠ ${reason}，本次跳过该类型（media.yaml 中对应条目保持不变）`)
+				missingTypes.push(subjectType)
+				if (index < typeKeys.length - 1)
+					await sleep(cfg.throttleMs)
+				continue
 			}
 			cachedTypes.push(subjectType)
 			console.log(`↺ subject_type=${subjectType} 使用本地缓存 ${collections.length} 条`)
@@ -414,6 +430,10 @@ async function main(): Promise<void> {
 	if (args.dryRun) {
 		console.log('\n--dry-run 试算结果（未写入任何文件）：')
 	}
+	else if (remote.length === 0 && cachedTypes.length === 0) {
+		// 一条远端数据都没拿到：保留现有 media.yaml，避免用本地副本重写造成无意义变更
+		console.warn('\n全部数据源均不可用，已跳过写入，media.yaml 保持原样')
+	}
 	else {
 		fs.writeFileSync(YAML_PATH, stringifyMediaYaml(entries))
 		console.log('\nmedia.yaml 已更新')
@@ -422,6 +442,8 @@ async function main(): Promise<void> {
 	console.log(`  共 ${entries.length} 条`)
 	if (cachedTypes.length)
 		console.log(`  注意：subject_type ${cachedTypes.join(' / ')} 本次为缓存兜底，数据可能非最新`)
+	if (missingTypes.length)
+		console.log(`  注意：subject_type ${missingTypes.join(' / ')} 本次无数据可用，已跳过（media.yaml 未受影响）`)
 	if (skipped)
 		console.log('  跳过原因：type / status 未配置于 media.config.ts 的 typeMap / statusMap（如搁置、抛弃默认丢弃）')
 }
